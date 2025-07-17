@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
-import { useForm, router } from '@inertiajs/vue3';
-import { Head } from '@inertiajs/vue3';
+import { useForm, router, Head } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
 defineProps<{
@@ -53,39 +52,41 @@ const deleteCustomer = (id: number) => {
 <template>
   <Head title="Customers" />
   <AppLayout>
-    <div class="p-6">
-      <h1 class="text-2xl font-bold mb-6">{{ editing ? 'Edit' : 'Create' }} Customer</h1>
+    <div class="p-6 max-w-6xl mx-auto">
+      <h1 class="text-3xl font-bold text-blue-800  mb-6">
+        {{ editing ? 'Edit' : 'Create' }} Customer
+      </h1>
 
-      <form @submit.prevent="submit" class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mb-8">
+      <form @submit.prevent="submit" class="bg-white dark:bg-gray-900 rounded-xl shadow p-6 grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
         <div>
-          <label class="block mb-1 font-semibold">Name</label>
-          <input v-model="form.name" type="text" placeholder="Enter name" class="w-full border p-2 rounded" />
+          <label class="text-white mb-1 font-semibold">Name</label>
+          <input v-model="form.name" type="text" placeholder="Enter name" class="w-full border border-gray-300 dark:border-gray-700 p-2 rounded bg-white dark:bg-gray-800 text-black dark:text-white" />
         </div>
 
         <div>
-          <label class="block mb-1 font-semibold">Email</label>
-          <input v-model="form.email" type="email" placeholder="Enter email" class="w-full border p-2 rounded" />
+          <label class="text-white mb-1 font-semibold">Email</label>
+          <input v-model="form.email" type="email" placeholder="Enter email" class="w-full border border-gray-300 dark:border-gray-700 p-2 rounded bg-white dark:bg-gray-800 text-black dark:text-white" />
         </div>
 
         <div class="md:col-span-2">
-          <label class="block mb-1 font-semibold">Phone</label>
-          <input v-model="form.phone" type="text" placeholder="Enter phone" class="w-full border p-2 rounded" />
+          <label class="text-white mb-1 font-semibold">Phone</label>
+          <input v-model="form.phone" type="text" placeholder="Enter Phone" class="w-full border border-gray-300 dark:border-gray-700 p-2 rounded bg-white dark:bg-gray-800 text-black dark:text-white" />
         </div>
 
         <div class="md:col-span-2">
-          <label class="block mb-1 font-semibold">Address</label>
-          <input v-model="form.address" type="text" placeholder="Enter address" class="w-full border p-2 rounded" />
+          <label class="text-white mb-1 font-semibold">Address</label>
+          <input v-model="form.address" type="text" placeholder="Enter address" class="w-full border border-gray-300 dark:border-gray-700 p-2 rounded bg-white dark:bg-gray-800 text-black dark:text-white" />
         </div>
 
         <div class="md:col-span-2 flex space-x-2 mt-2">
-          <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded">
+          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded shadow">
             {{ editing ? 'Update' : 'Add' }}
           </button>
           <button
             type="button"
             v-if="editing"
             @click="() => { editing = false; selectedCustomerId = null; form.reset(); }"
-            class="bg-gray-500 text-white px-6 py-2 rounded"
+            class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded shadow"
           >
             Cancel
           </button>
@@ -93,10 +94,10 @@ const deleteCustomer = (id: number) => {
       </form>
 
       <div>
-        <h2 class="text-xl font-semibold mb-4">Customer List</h2>
-        <div class="overflow-x-auto">
-          <table class="min-w-full text-left border">
-            <thead class="bg-gray-100 dark:bg-gray-800">
+        <h2 class="text-blue-800 text-2xl  font-semibold  mb-4">Customer List</h2>
+        <div class="overflow-x-auto bg-white dark:bg-gray-900 shadow rounded-lg">
+          <table class="min-w-full text-left">
+            <thead class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
               <tr>
                 <th class="px-4 py-2">Name</th>
                 <th class="px-4 py-2">Email</th>
@@ -106,7 +107,7 @@ const deleteCustomer = (id: number) => {
               </tr>
             </thead>
             <tbody>
-              <tr v-for="customer in customers" :key="customer.id" class="border-t">
+              <tr v-for="customer in customers" :key="customer.id" class="border-t border-gray-200 text-white dark:text-gray-300">
                 <td class="px-4 py-2">{{ customer.name }}</td>
                 <td class="px-4 py-2">{{ customer.email }}</td>
                 <td class="px-4 py-2">{{ customer.phone }}</td>
@@ -117,7 +118,7 @@ const deleteCustomer = (id: number) => {
                 </td>
               </tr>
               <tr v-if="customers.length === 0">
-                <td colspan="5" class="px-4 py-4 text-center text-gray-500">No customers found.</td>
+                <td colspan="5" class="px-4 py-4 text-center text-gray-500 dark:text-gray-400">No customers found.</td>
               </tr>
             </tbody>
           </table>
@@ -126,3 +127,5 @@ const deleteCustomer = (id: number) => {
     </div>
   </AppLayout>
 </template>
+
+

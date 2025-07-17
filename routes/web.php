@@ -5,9 +5,8 @@ use Inertia\Inertia;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome');
-})->name('home');
+Route::redirect('/', '/login')->name('home');
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
