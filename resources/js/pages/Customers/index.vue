@@ -128,4 +128,4 @@ const deleteCustomer = (id: number) => {
   </AppLayout>
 </template>
 
-
+ .
