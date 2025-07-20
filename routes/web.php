@@ -4,10 +4,10 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SaleController;
+use App\Http\Controllers\UserController;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome');
-})->name('home');
+Route::redirect('/', '/login')->name('home');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -29,5 +29,16 @@ Route::middleware(['auth', 'verified'])->prefix('products')->name('products.')->
     Route::delete('/{product}', [ProductController::class, 'destroy'])->name('destroy');
 });
 
+Route::middleware(['auth', 'verified'])->prefix('sales')->name('sales.')->group(function () {
+    Route::get('/', [SaleController::class, 'index'])->name('index');  // Inertia page
+   Route::post('/', [SaleController::class, 'store']);
+
+});
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource('users', UserController::class);
+    Route::put('users/{user}/submit', [UserController::class, 'submit'])->name('users.submit');
+    Route::put('users/{user}/cancel', [UserController::class, 'cancel'])->name('users.cancel');
+});
 require __DIR__.'/auth.php';
 require __DIR__.'/settings.php';

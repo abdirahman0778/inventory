@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class ProductController extends Controller
+
 {
     public function index()
     {
