@@ -17,7 +17,7 @@ const mainNavItems: NavItem[] = [
   { title: 'Customers', href: '/customers', icon: Users },
   { title: 'Sales', href: '/sales', icon: ShoppingCart },
   { title: 'Products', href: '/products', icon: Boxes },
-  { title: 'Create Users', href: '/users/create', icon: UserPlus },
+  { title: 'Create Users', href: '/users', icon: UserPlus },
 ];
 </script>
 

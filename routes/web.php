@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
+
 
 Route::redirect('/', '/login')->name('home');
 
@@ -27,6 +29,15 @@ Route::middleware(['auth', 'verified'])->prefix('products')->name('products.')->
     Route::put('/{product}', [ProductController::class, 'update'])->name('update');
     Route::delete('/{product}', [ProductController::class, 'destroy'])->name('destroy');
 });
+// ✅ Users routes
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource('users', UserController::class);
+    Route::put('users/{user}/submit', [UserController::class, 'submit'])->name('users.submit');
+    Route::put('users/{user}/cancel', [UserController::class, 'cancel'])->name('users.cancel');
+});
+
+
 
 require __DIR__.'/auth.php';
 require __DIR__.'/settings.php';
